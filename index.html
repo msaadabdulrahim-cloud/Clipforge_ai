@@ -5,168 +5,345 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CLIPFORGE AI</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#090b12;color:#fff;font-family:Arial,sans-serif}
-header{padding:22px;border-bottom:1px solid #292d3b;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:22px;font-weight:900;color:#a78bfa}
-.logo span{color:white}
-.tag{font-size:10px;color:#aaa}
-main{max-width:850px;margin:auto;padding:25px 18px}
+body{margin:0;background:#090b12;color:white;font-family:Arial,sans-serif}
+header{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #292d3b}
+.logo{font-size:23px;font-weight:900;color:#a78bfa}
+.menu{font-size:26px;cursor:pointer}
+nav{display:none;background:#141722;padding:15px}
+nav a{display:block;color:white;text-decoration:none;padding:14px;border-bottom:1px solid #292d3b}
+main{max-width:900px;margin:auto;padding:22px 16px}
 h1{font-size:34px;line-height:1.2}
 h1 span{color:#a78bfa}
-.sub,.small{color:#aaa;line-height:1.6}
-.panel{background:#141722;border:1px solid #292d3b;border-radius:16px;padding:20px;margin-top:22px}
-h2{font-size:19px;margin-top:0}
-label{display:block;margin:17px 0 8px;font-size:14px}
-input,textarea,select{width:100%;padding:14px;border-radius:9px;border:1px solid #35394a;background:#0c0f18;color:white;font-size:15px}
-textarea{min-height:95px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.option{background:#1b2030;padding:14px;border-radius:11px}
-.option label{margin:0 0 10px}
+.subtitle{color:#aaa;line-height:1.6}
+.panel{background:#141722;border:1px solid #292d3b;border-radius:16px;padding:20px;margin:22px 0}
+h2{font-size:21px}
+h3{font-size:15px}
+label{display:block;margin:15px 0 8px;font-size:14px}
+input,textarea,select{width:100%;padding:14px;background:#0c0f18;border:1px solid #35394a;border-radius:9px;color:white;font-size:15px}
+textarea{min-height:110px;resize:vertical}
 button{border:0;border-radius:10px;padding:15px;font-weight:bold;cursor:pointer}
-.primary{background:#8b5cf6;color:white;width:100%;margin-top:18px}
-.status{color:#c4b5fd;font-size:13px}
-.project{background:#252a39;padding:12px;border-radius:9px;margin-top:10px}
-footer{text-align:center;color:#777;font-size:12px;padding:35px 15px}
-@media(max-width:520px){.grid{grid-template-columns:1fr}h1{font-size:29px}}
+.primary{width:100%;background:#8b5cf6;color:white;margin-top:18px}
+.secondary{background:#252a39;color:white}
+.styles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.style{background:#202536;padding:15px;border:1px solid #363b50;border-radius:12px;cursor:pointer;text-align:center}
+.style.selected{border:2px solid #a78bfa;background:#302447}
+.style p{font-size:12px;color:#aaa}
+.status{font-size:13px;color:#c4b5fd;margin-top:12px}
+video{width:100%;border-radius:12px;margin-top:12px}
+.hidden{display:none}
+footer{text-align:center;color:#777;padding:30px;font-size:12px}
+@media(max-width:500px){h1{font-size:29px}.styles{grid-template-columns:1fr 1fr}}
 </style>
 </head>
+
 <body>
+
 <header>
-<div class="logo">CLIPFORGE <span>AI</span></div>
-<div class="tag">YOUR PERSONAL VIDEO WORKSPACE</div>
+<div class="logo">CLIPFORGE AI</div>
+<div class="menu" onclick="toggleMenu()">☰</div>
 </header>
 
+<nav id="navigation">
+<a href="#generate">1. Generate a Video</a>
+<a href="#youtube">2. YouTube Clipper</a>
+<a href="#upload">3. Upload a Video</a>
+</nav>
+
 <main>
-<h1>Create videos.<br><span>Without the headache.</span></h1>
-<p class="sub">Turn videos, ideas and stories into content for TikTok, YouTube Shorts and Reels.</p>
 
-<section class="panel">
-<h2>01. Choose your starting point</h2>
-<label>YouTube video link</label>
-<input id="youtube" type="url" placeholder="Paste your YouTube URL">
+<h1>Create videos.<br><span>Your imagination, powered by AI.</span></h1>
+<p class="subtitle">Create original videos, turn YouTube videos into clips, and edit your own uploads.</p>
 
-<p class="small">OR upload your own video</p>
-<input id="upload" type="file" accept="video/*">
+<!-- OPTION 1: GENERATE VIDEO -->
 
-<label>Describe a video you want AI to create</label>
-<textarea id="story" placeholder="Describe your video idea or story..."></textarea>
-</section>
+<section class="panel" id="generate">
 
-<section class="panel">
-<h2>02. Choose your video style</h2>
-<label>Video type</label>
-<select id="type">
-<option>Karaoke captions</option>
-<option>Streamer highlights</option>
-<option>Short-form clips</option>
-<option>Minecraft stories</option>
-<option>What If videos</option>
-<option>Story videos</option>
-<option>Motivational edits</option>
-</select>
+<h2>01. Generate a Video</h2>
+<p class="subtitle">Describe the video you want. AI will create a brand-new video without needing a YouTube link.</p>
 
-<label>Caption style</label>
-<select id="caption">
-<option>Word-by-word highlights</option>
-<option>Karaoke captions</option>
-<option>Classic subtitles</option>
-<option>Animated captions</option>
-</select>
+<label>Describe your video</label>
+<textarea id="description" placeholder="Example: A realistic cinematic Minecraft adventure with a character exploring a mysterious village..."></textarea>
 
-<label>Caption font</label>
-<select id="font">
-<option>Arial</option>
-<option>Montserrat</option>
-<option>Impact</option>
-<option>Roboto</option>
-<option>Georgia</option>
-</select>
-</section>
+<h3>Choose your background / visual style</h3>
 
-<section class="panel">
-<h2>03. Customize your video</h2>
-<div class="grid">
-<div class="option">
-<label>Voice style</label>
-<select id="voice">
-<option>No voice</option>
-<option>Natural</option>
-<option>Robotic</option>
-<option>Dramatic</option>
-<option>Calm</option>
-<option>Energetic</option>
-</select>
+<div class="styles">
+<div class="style selected" onclick="chooseStyle(this,'Realistic')">
+<strong>Realistic</strong>
+<p>Real-life cinematic videos</p>
 </div>
 
-<div class="option">
+<div class="style" onclick="chooseStyle(this,'Minecraft')">
+<strong>Minecraft</strong>
+<p>Minecraft gameplay style</p>
+</div>
+
+<div class="style" onclick="chooseStyle(this,'Cyber Surfer')">
+<strong>Cyber Surfer</strong>
+<p>Neon futuristic visuals</p>
+</div>
+
+<div class="style" onclick="chooseStyle(this,'Anime')">
+<strong>Anime</strong>
+<p>Animated anime visuals</p>
+</div>
+
+<div class="style" onclick="chooseStyle(this,'Cartoon')">
+<strong>Cartoon</strong>
+<p>Colourful cartoon videos</p>
+</div>
+
+<div class="style" onclick="chooseStyle(this,'Cinematic')">
+<strong>Cinematic</strong>
+<p>Movie-quality visuals</p>
+</div>
+</div>
+
 <label>Video format</label>
-<select id="format">
-<option>9:16 - TikTok / Reels / Shorts</option>
+<select id="genFormat">
+<option>9:16 - TikTok / Shorts / Reels</option>
 <option>16:9 - YouTube</option>
 <option>1:1 - Square</option>
 </select>
-</div>
 
-<div class="option">
 <label>Video duration</label>
-<select id="duration">
+<select id="genDuration">
+<option>5 seconds</option>
+<option>10 seconds</option>
+<option>15 seconds</option>
+<option>30 seconds</option>
+<option>60 seconds</option>
+</select>
+
+<label>Sound</label>
+<select id="genSound">
+<option>Automatically choose</option>
+<option>No sound</option>
+<option>Background music</option>
+<option>Voice narration</option>
+</select>
+
+<button class="primary" onclick="generateVideo()">GENERATE AI VIDEO</button>
+<p class="status" id="genStatus">Ready to create your video.</p>
+
+</section>
+
+<!-- OPTION 2: YOUTUBE CLIPPER -->
+
+<section class="panel" id="youtube">
+
+<h2>02. YouTube Clipper</h2>
+<p class="subtitle">Turn existing YouTube videos into short-form content.</p>
+
+<label>Paste YouTube video link</label>
+<input id="youtubeLink" type="url" placeholder="https://www.youtube.com/watch?v=...">
+
+<label>Choose your clipping style</label>
+<select id="clipStyle">
+<option>Streamer Highlights</option>
+<option>Karaoke Captions</option>
+<option>Animated Captions</option>
+<option>Classic Subtitles</option>
+<option>Podcast Clips</option>
+<option>Funny Moments</option>
+</select>
+
+<label>Caption appearance</label>
+<select id="clipFont">
+<option>Bold modern</option>
+<option>MrBeast style</option>
+<option>Minimal subtitles</option>
+<option>Karaoke word highlights</option>
+</select>
+
+<label>Clip duration</label>
+<select id="clipDuration">
 <option>30 seconds</option>
 <option>60 seconds</option>
 <option>90 seconds</option>
 <option>2 minutes</option>
-<option>5 minutes</option>
-<option>10 minutes</option>
 </select>
-</div>
 
-<div class="option">
-<label>Background music</label>
-<select id="music">
-<option>Automatically choose</option>
-<option>Epic</option>
-<option>Chill</option>
-<option>Dramatic</option>
-<option>No music</option>
+<label>Video format</label>
+<select id="clipFormat">
+<option>9:16 - TikTok / Shorts / Reels</option>
+<option>16:9 - YouTube</option>
 </select>
-</div>
-</div>
 
-<button class="primary" onclick="createProject()">CREATE MY VIDEO</button>
-<p class="status" id="status">Your workspace is ready.</p>
+<button class="primary" onclick="clipYouTube()">CREATE SHORT CLIPS</button>
+<p class="status" id="youtubeStatus">Paste a YouTube link to get started.</p>
+
 </section>
+
+<!-- OPTION 3: UPLOAD VIDEO -->
+
+<section class="panel" id="upload">
+
+<h2>03. Upload a Video</h2>
+<p class="subtitle">Upload your own video and turn it into short clips.</p>
+
+<label>Select your video</label>
+<input type="file" id="videoFile" accept="video/*">
+
+<video id="preview" controls class="hidden"></video>
+
+<label>Editing style</label>
+<select id="uploadStyle">
+<option>Streamer Highlights</option>
+<option>Karaoke Captions</option>
+<option>Animated Captions</option>
+<option>Podcast Clips</option>
+<option>Short-form Clips</option>
+<option>Classic Subtitles</option>
+</select>
+
+<label>Caption style</label>
+<select id="uploadCaption">
+<option>Word-by-word highlights</option>
+<option>Bold captions</option>
+<option>Classic subtitles</option>
+<option>Karaoke captions</option>
+</select>
+
+<label>Video format</label>
+<select id="uploadFormat">
+<option>9:16 - TikTok / Shorts / Reels</option>
+<option>16:9 - YouTube</option>
+</select>
+
+<button class="primary" onclick="processUpload()">CREATE MY CLIPS</button>
+<p class="status" id="uploadStatus">Choose a video to get started.</p>
+
+</section>
+
+<!-- WORKSPACE -->
 
 <section class="panel">
-<h2>Your workspace</h2>
-<p class="small">Your video projects</p>
+<h2>Your Workspace</h2>
+<p class="subtitle">Your video projects will appear here.</p>
 <div id="projects">No projects created yet.</div>
 </section>
+
 </main>
 
-<footer>CLIPFORGE AI · Personal video workspace</footer>
+<footer>CLIPFORGE AI © 2026</footer>
 
 <script>
-function createProject(){
-const link=document.getElementById("youtube").value.trim();
-const story=document.getElementById("story").value.trim();
-const file=document.getElementById("upload").files[0];
 
-if(!link&&!story&&!file){
-document.getElementById("status").textContent="Please add a video link, upload a video, or describe a story.";
+let selectedStyle="Realistic";
+
+function toggleMenu(){
+const nav=document.getElementById("navigation");
+nav.style.display=nav.style.display==="block"?"none":"block";
+}
+
+function chooseStyle(element,style){
+document.querySelectorAll(".style").forEach(item=>{
+item.classList.remove("selected");
+});
+element.classList.add("selected");
+selectedStyle=style;
+}
+
+function addProject(name){
+const projects=document.getElementById("projects");
+if(projects.textContent==="No projects created yet."){
+projects.textContent="";
+}
+const item=document.createElement("div");
+item.style.cssText="background:#252a39;padding:14px;border-radius:10px;margin:10px 0";
+item.textContent=name;
+projects.appendChild(item);
+}
+
+function generateVideo(){
+const description=document.getElementById("description").value.trim();
+const status=document.getElementById("genStatus");
+
+if(!description){
+status.textContent="Please describe the video you want.";
 return;
 }
 
-const project=document.createElement("div");
-project.className="project";
-project.textContent="New project: "+document.getElementById("type").value;
+const settings={
+type:"text_to_video",
+description:description,
+style:selectedStyle,
+format:document.getElementById("genFormat").value,
+duration:document.getElementById("genDuration").value,
+sound:document.getElementById("genSound").value
+};
 
-const list=document.getElementById("projects");
-if(list.textContent==="No projects created yet.")list.textContent="";
-list.appendChild(project);
+addProject("AI Video - "+selectedStyle);
+status.textContent="Your settings are ready. Connect the AI video-generation backend to generate the actual video.";
 
-document.getElementById("status").textContent="Project settings collected. Connect an AI processing backend to generate the actual video.";
+console.log(settings);
 }
+
+function clipYouTube(){
+const link=document.getElementById("youtubeLink").value.trim();
+const status=document.getElementById("youtubeStatus");
+
+if(!link){
+status.textContent="Please paste a YouTube link.";
+return;
+}
+
+if(!/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//i.test(link)){
+status.textContent="Please enter a valid YouTube link.";
+return;
+}
+
+const settings={
+type:"youtube_clipping",
+url:link,
+style:document.getElementById("clipStyle").value,
+captions:document.getElementById("clipFont").value,
+duration:document.getElementById("clipDuration").value,
+format:document.getElementById("clipFormat").value
+};
+
+addProject("YouTube Clip - "+settings.style);
+status.textContent="YouTube clipping settings collected. Connect the video-processing backend to create clips.";
+
+console.log(settings);
+}
+
+document.getElementById("videoFile").addEventListener("change",function(){
+const file=this.files[0];
+if(!file)return;
+
+const preview=document.getElementById("preview");
+preview.src=URL.createObjectURL(file);
+preview.classList.remove("hidden");
+});
+
+function processUpload(){
+const file=document.getElementById("videoFile").files[0];
+const status=document.getElementById("uploadStatus");
+
+if(!file){
+status.textContent="Please select a video first.";
+return;
+}
+
+const settings={
+type:"uploaded_video",
+filename:file.name,
+style:document.getElementById("uploadStyle").value,
+captions:document.getElementById("uploadCaption").value,
+format:document.getElementById("uploadFormat").value
+};
+
+addProject("Uploaded Video - "+file.name);
+status.textContent="Upload selected. Connect the processing backend to create your clips.";
+
+console.log(settings);
+}
+
 </script>
+
 </body>
 </html>
