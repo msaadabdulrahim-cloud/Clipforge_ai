@@ -1,47 +1,172 @@
-C
-CLIPFORGE AI
-YOUR PERSONAL VIDEO WORKSPACE
-CREATE WITHOUT THE EDITING HEADACHE
-What are we making today?
-Start with a video link or describe a brand-new video. Then customize the result your way.
-1. Choose how to start
-Pick one starting method.
-🔗
-Use a video link
-Paste a YouTube or other video URL
-✍️
-Describe a video
-Tell AI what you want created
-Video URL
-Or upload a video file
 
-2. Choose the video type
-Choose the result you want.
-🎤 Karaoke captions
-Highlight each spoken word as it is said
-🎮 Streamer highlights
-Find exciting moments and make short clips
-💬 Subtitles
-Add readable captions to the video
-📱 Short-form clips
-Prepare clips for Shorts, Reels and TikTok
-3. Customize your video
-Change these settings whenever you want.
-Voice
-NaturalRoboticDramaticCalmEnergeticNo voice
-Caption font
-ArialMontserratPoppinsRobotoImpactGeorgiaCourier New
-Caption animation
-Word-by-word highlightPop inTypewriterFade inStatic subtitlesNo captions
-Video format
-9:16 — TikTok / Reels / Shorts16:9 — YouTube1:1 — Square
-Video length
-30 seconds60 seconds90 seconds2 minutes5 minutes10 minutesCustom length
-Background music
-Choose automaticallyEpicChillDramaticUpbeatNo music
-Anything else? (optional)
-Review my video settings →
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLIPFORGE AI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090b12;color:#fff;font-family:Arial,sans-serif}
+header{padding:22px;border-bottom:1px solid #292d3b;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:900;color:#a78bfa}
+.logo span{color:white}
+.tag{font-size:10px;color:#aaa}
+main{max-width:850px;margin:auto;padding:25px 18px}
+h1{font-size:34px;line-height:1.2}
+h1 span{color:#a78bfa}
+.sub,.small{color:#aaa;line-height:1.6}
+.panel{background:#141722;border:1px solid #292d3b;border-radius:16px;padding:20px;margin-top:22px}
+h2{font-size:19px;margin-top:0}
+label{display:block;margin:17px 0 8px;font-size:14px}
+input,textarea,select{width:100%;padding:14px;border-radius:9px;border:1px solid #35394a;background:#0c0f18;color:white;font-size:15px}
+textarea{min-height:95px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.option{background:#1b2030;padding:14px;border-radius:11px}
+.option label{margin:0 0 10px}
+button{border:0;border-radius:10px;padding:15px;font-weight:bold;cursor:pointer}
+.primary{background:#8b5cf6;color:white;width:100%;margin-top:18px}
+.status{color:#c4b5fd;font-size:13px}
+.project{background:#252a39;padding:12px;border-radius:9px;margin-top:10px}
+footer{text-align:center;color:#777;font-size:12px;padding:35px 15px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}h1{font-size:29px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">CLIPFORGE <span>AI</span></div>
+<div class="tag">YOUR PERSONAL VIDEO WORKSPACE</div>
+</header>
 
-This page currently collects your choices and previews your setup. Actual AI generation, YouTube importing and video exporting still need secure backend services. Only use videos you own or have permission to process. Some platforms restrict downloading or processing linked videos.
-CLIPFORGE AI · Personal workspace · No project quota or watermark added by this interface
+<main>
+<h1>Create videos.<br><span>Without the headache.</span></h1>
+<p class="sub">Turn videos, ideas and stories into content for TikTok, YouTube Shorts and Reels.</p>
 
+<section class="panel">
+<h2>01. Choose your starting point</h2>
+<label>YouTube video link</label>
+<input id="youtube" type="url" placeholder="Paste your YouTube URL">
+
+<p class="small">OR upload your own video</p>
+<input id="upload" type="file" accept="video/*">
+
+<label>Describe a video you want AI to create</label>
+<textarea id="story" placeholder="Describe your video idea or story..."></textarea>
+</section>
+
+<section class="panel">
+<h2>02. Choose your video style</h2>
+<label>Video type</label>
+<select id="type">
+<option>Karaoke captions</option>
+<option>Streamer highlights</option>
+<option>Short-form clips</option>
+<option>Minecraft stories</option>
+<option>What If videos</option>
+<option>Story videos</option>
+<option>Motivational edits</option>
+</select>
+
+<label>Caption style</label>
+<select id="caption">
+<option>Word-by-word highlights</option>
+<option>Karaoke captions</option>
+<option>Classic subtitles</option>
+<option>Animated captions</option>
+</select>
+
+<label>Caption font</label>
+<select id="font">
+<option>Arial</option>
+<option>Montserrat</option>
+<option>Impact</option>
+<option>Roboto</option>
+<option>Georgia</option>
+</select>
+</section>
+
+<section class="panel">
+<h2>03. Customize your video</h2>
+<div class="grid">
+<div class="option">
+<label>Voice style</label>
+<select id="voice">
+<option>No voice</option>
+<option>Natural</option>
+<option>Robotic</option>
+<option>Dramatic</option>
+<option>Calm</option>
+<option>Energetic</option>
+</select>
+</div>
+
+<div class="option">
+<label>Video format</label>
+<select id="format">
+<option>9:16 - TikTok / Reels / Shorts</option>
+<option>16:9 - YouTube</option>
+<option>1:1 - Square</option>
+</select>
+</div>
+
+<div class="option">
+<label>Video duration</label>
+<select id="duration">
+<option>30 seconds</option>
+<option>60 seconds</option>
+<option>90 seconds</option>
+<option>2 minutes</option>
+<option>5 minutes</option>
+<option>10 minutes</option>
+</select>
+</div>
+
+<div class="option">
+<label>Background music</label>
+<select id="music">
+<option>Automatically choose</option>
+<option>Epic</option>
+<option>Chill</option>
+<option>Dramatic</option>
+<option>No music</option>
+</select>
+</div>
+</div>
+
+<button class="primary" onclick="createProject()">CREATE MY VIDEO</button>
+<p class="status" id="status">Your workspace is ready.</p>
+</section>
+
+<section class="panel">
+<h2>Your workspace</h2>
+<p class="small">Your video projects</p>
+<div id="projects">No projects created yet.</div>
+</section>
+</main>
+
+<footer>CLIPFORGE AI · Personal video workspace</footer>
+
+<script>
+function createProject(){
+const link=document.getElementById("youtube").value.trim();
+const story=document.getElementById("story").value.trim();
+const file=document.getElementById("upload").files[0];
+
+if(!link&&!story&&!file){
+document.getElementById("status").textContent="Please add a video link, upload a video, or describe a story.";
+return;
+}
+
+const project=document.createElement("div");
+project.className="project";
+project.textContent="New project: "+document.getElementById("type").value;
+
+const list=document.getElementById("projects");
+if(list.textContent==="No projects created yet.")list.textContent="";
+list.appendChild(project);
+
+document.getElementById("status").textContent="Project settings collected. Connect an AI processing backend to generate the actual video.";
+}
+</script>
+</body>
+</html>
