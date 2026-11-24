@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLIPFORGE AI</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0b12;
+      color: white;
+    }
+    header {
+      padding: 22px;
+      border-bottom: 1px solid #292936;
+      font-size: 23px;
+      font-weight: bold;
+    }
+    header span { color: #a78bfa; }
+    main {
+      max-width: 850px;
+      margin: 45px auto;
+      padding: 20px;
+    }
+    h1 { font-size: 34px; }
+    .subtitle { color: #aaa; line-height: 1.6; }
+    .panel {
+      margin-top: 28px;
+      padding: 25px;
+      background: #171722;
+      border: 1px solid #333344;
+      border-radius: 16px;
+    }
+    .upload {
+      display: block;
+      padding: 35px 15px;
+      text-align: center;
+      border: 2px dashed #7561bd;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    input { display: none; }
+    button {
+      margin-top: 18px;
+      padding: 14px 20px;
+      border: 0;
+      border-radius: 9px;
+      background: #8b5cf6;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    video {
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 10px;
+      display: none;
+    }
+    #message { color: #c4b5fd; margin-top: 15px; }
+    .note { color: #999; font-size: 13px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <header>CLIPFORGE <span>AI</span></header>
+
+  <main>
+    <h1>Turn long videos into clips.</h1>
+    <p class="subtitle">
+      Your personal workspace for finding, creating and managing
+      short-form video clips.
+    </p>
+
+    <section class="panel">
+      <h2>Upload your video</h2>
+      <p class="subtitle">Choose a video from your device to get started.</p>
+
+      <label class="upload" for="videoFile">
+        <div style="font-size:36px">＋</div>
+        <strong>Choose a video</strong>
+        <p class="note">Select a video from your device.</p>
+      </label>
+
+      <input type="file" id="videoFile" accept="video/*">
+
+      <video id="preview" controls></video>
+
+      <p id="message">No video selected yet.</p>
+
+      <button id="uploadButton" disabled>Continue</button>
+
+      <p class="note">
+        This is the first version of your workspace.
+        Automatic AI clip detection and video exporting
+        will be added when the backend is connected.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const fileInput = document.getElementById("videoFile");
+    const preview = document.getElementById("preview");
+    const message = document.getElementById("message");
+    const uploadButton = document.getElementById("uploadButton");
+
+    let videoURL = null;
+
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files[0];
+
+      if (!file) return;
+
+      if (videoURL) URL.revokeObjectURL(videoURL);
+
+      videoURL = URL.createObjectURL(file);
+      preview.src = videoURL;
+      preview.style.display = "block";
+
+      message.textContent = "Selected: " + file.name;
+      uploadButton.disabled = false;
+    });
+
+    uploadButton.addEventListener("click", () => {
+      message.textContent =
+        "Video selected! Backend connection is the next step.";
+    });
+  </script>
+</body>
+</html>
