@@ -111,7 +111,6 @@
 
     fileInput.addEventListener("change", () => {
       const file = fileInput.files[0];
-
       if (!file) return;
 
       if (videoURL) URL.revokeObjectURL(videoURL);
