@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: clipforge-video-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
